@@ -11,19 +11,16 @@ var prizeText;
 
 var dials;
 
-//
-var currentAngle = 0;
-
 window.onload = function() {	
 
     dials = prompt("Quantos dials?")*1;
 
-     // creation of a 458x488 game
+    // creation of a 458x488 game
 	game = new Phaser.Game(458, 350*dials, Phaser.AUTO, "");
-     // adding "PlayGame" state
-     game.state.add("PlayGame",playGame);
-     // launching "PlayGame" state
-     game.state.start("PlayGame");
+    // adding "PlayGame" state
+    game.state.add("PlayGame",playGame);
+    // launching "PlayGame" state
+    game.state.start("PlayGame");
 
 
 }
@@ -70,8 +67,8 @@ playGame.prototype = {
 	},
      rotate(o,e){
         var wheelref = wheel[o.__mykey]
-        signal = e.clientX>200?+1:-1;
-        currentAngle = 360/slices * signal; 
+        var signal = e.clientX>200?+1:-1;
+        var currentAngle = 360/slices * signal; 
         var spinTween = game.add.tween(wheelref).to({
             angle: currentAngle.toString()
         }, 500, Phaser.Easing.Quadratic.Out, true );
