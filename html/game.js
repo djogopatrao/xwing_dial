@@ -19,9 +19,9 @@ var angles = {}
 var dials;
 
 window.onload = function() {	
+alert(0)
 
     if ( !window.sessionStorage.getItem('xwingDials') ) {
-
     } else {
 
         var obj = JSON.parse( window.sessionStorage.getItem('xwingDials') )
