@@ -3,14 +3,26 @@
 	<head>
 	<style type="text/css">
 		body{
+            color: #ffffff;
 			background: #000000;
 			padding:0px;
 			margin:0px;
 		}
 	</style>
 	<script src="phaser.min.js"></script>
-     <script src = "game.js"></script>
+    <script src = "game.js"></script>
+    <script src='jquery-3.3.1.min.js'></script>
 	</head>
 	<body>
+        <div id='menubar'>
+            <select id='select-dial'>
+                <option value='firespray'>Firespray</option>
+                <option value='quadjumper'>Quadjumper</option>
+            </select>
+            <input type='button' value='+' id='add-dial-button'></input>
+            <input type='button' value='Show Dials' id='show-dial-button'></input>
+        </div>
+        <div id='dial-list'></div>
+        <div id='main'></div>
 	</body>
 </html>
