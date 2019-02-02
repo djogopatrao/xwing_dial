@@ -35,11 +35,12 @@ window.onload = function() {
 
 
     // hook events to the form
-    $('#add-dial-button').on('click',function(){
+    $('#select-dial').on('change',function(){
         init_dials.push( $('#select-dial').val() );
         var txt="";
         $(init_dials).each(function(i,v){txt+=v+"<br>"});
         $('#dial-list').html(txt);
+        $('#select-dial').val("");
     });
 
     // hook events to the form
