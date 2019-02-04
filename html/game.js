@@ -93,6 +93,7 @@ playGame.prototype = {
                 game.load.image(v+"_dial", "dials/"+v+"_dial.png");
             });
             game.load.image("back", "dials/dial_back.png");
+            game.load.image("rebel_back", "dials/rebel_dial_back.png");
             game.load.image("pin", "pin.png");     
      },
      // funtion to be executed when the state is created
@@ -102,6 +103,9 @@ playGame.prototype = {
 
         for (var i=0;i<dials;i++) {
             var key = "wheel_"+i;
+            // add the back dial
+            var backdial = game.add.sprite(game.width /2 , 350*(i+0.5), "rebel_back" );
+            backdial.anchor.set(0.5);
             // adding the wheel in the middle of the canvas
             wheel[key] = game.add.sprite(game.width /2 , 350*(i+0.5), init_dials[i]+"_dial" );
             // setting wheel registration point in its center
@@ -121,8 +125,10 @@ playGame.prototype = {
 
 
             // adding the pin in the middle of the canvas
+            // TODO => deprecate (the backdial will do this)
             pins[key] = game.add.sprite(game.width / 2,  350*(i+0.5), "pin");
             pins[key].anchor.set(0.5);
+            pins[key].visible=false;
             pins[key].inputEnabled = true;
             pins[key].__mykey = key;
             pins[key].events.onInputDown.add(this.lockDial,this);
