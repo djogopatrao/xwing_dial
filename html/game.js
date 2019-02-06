@@ -10,6 +10,8 @@ var wheel = {};
 // the back of the DIALS
 var dial_backs = {}
 
+var drag_event=null;
+
 // how many maneuvers on eah dial
 var dial_movements = {   "attack_shuttle": 17,
     "auzituck": 15,
@@ -112,7 +114,8 @@ playGame.prototype = {
             wheel[key].__mykey = key;
             wheel[key].__movements = dial_movements[init_dials[i]];
             game.add.tween(wheel[key]).to({angle:angles[key]},500,Phaser.Easing.Quadratic.Out,true);
-            wheel[key].events.onInputDown.add(this.rotate,this);
+//            wheel[key].events.onInputDown.add(this.rotate,this);
+            wheel[key].events.onDragStart.add(function(){alert(0);},this);
 
             dial_backs[key] = game.add.sprite( game.width/2, 350*(i+0.5), 'back' );
             dial_backs[key].anchor.set(0.5);
@@ -156,6 +159,46 @@ playGame.prototype = {
             init_dials: init_dials
         };
         window.sessionStorage.setItem('xwingDials', JSON.stringify(obj) )
+    },
+    update(){
+        if (game.input.activePointer.isDown ) {
+            for(var w in wheel) {
+                if ( wheel[w].input.checkPointerOver(game.input.activePointer)) {    
+                // pointer is down and is over our sprite, so do something here
+                    var delta_x = game.input.x - wheel[w].position.x; 
+                    var delta_y = game.input.y - wheel[w].position.y;
+
+                    var angle = Math.asin( delta_x / Math.sqrt( Math.pow( delta_x,2 ) + Math.pow( delta_y,2 ) ) ) * 180/3.141592
+
+                    if ( delta_x>0 && delta_y<0 ) {
+                        angle = angle;
+                    } else if ( delta_x>0 && delta_y>0 ) {
+                        angle = 180-angle;
+                    } else if ( delta_x<0 && delta_y>0 ) {
+                        angle = 180-angle;
+                    } else {
+                        angle = 360+angle;
+                    }
+
+                    if ( drag_event ) {
+                        var delta_angle = angle - drag_event.angle;
+                        while ( delta_angle > 360 ) { delta_angle-=360; }
+                        while ( delta_angle < -360 ) { delta_angle+=360; }
+
+                        wheel[w].angle += delta_angle;
+                        angles[w] = wheel[w].angle;
+                        this.saveState();
+
+
+                    }
+
+                    drag_event={angle:angle, mykey:w}
+
+                }
+            }
+        } else if ( game.input.activePointer.isUp && drag_event ) {
+            drag_event = false;
+        }
     }
 }
 
