@@ -10,9 +10,6 @@ var wheel = {};
 // the back of the DIALS
 var dial_backs = {}
 
-// the pin the DIALS
-var pins = {}
-
 // how many maneuvers on eah dial
 var dial_movements = {   "attack_shuttle": 17,
     "auzituck": 15,
@@ -124,15 +121,6 @@ playGame.prototype = {
             dial_backs[key].__mykey = key;
             dial_backs[key].events.onInputDown.add(this.unlockDial,this);
 
-
-            // adding the pin in the middle of the canvas
-            // TODO => deprecate (the backdial will do this)
-            pins[key] = game.add.sprite(game.width / 2,  350*(i+0.5), "pin");
-            pins[key].anchor.set(0.5);
-            pins[key].visible=false;
-            pins[key].inputEnabled = true;
-            pins[key].__mykey = key;
-            pins[key].events.onInputDown.add(this.lockDial,this);
         }
 
         // waiting for your input, then calling "spin" function
@@ -156,12 +144,10 @@ playGame.prototype = {
     lockDial(o,e){
         wheel[o.__mykey].visible = false;
         dial_backs[o.__mykey].visible = true;
-        pins[o.__mykey].visible = false;
     },
     unlockDial(o,e){
         wheel[o.__mykey].visible = true;
         dial_backs[o.__mykey].visible = false;
-        pins[o.__mykey].visible = true;
     },
     saveState(){
         var obj = {
