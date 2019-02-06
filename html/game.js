@@ -7,8 +7,8 @@ var init_dials = [];
 // the spinning wheel DIALS
 var wheel = {};
 
-// the back of the DIALS
-var dial_backs = {}
+//
+var lock = {};
 
 var drag_event=null;
 
@@ -71,7 +71,7 @@ window.onload = function() {
 
 function init_playarea() {
     // creation of a 458x488 game
-    game = new Phaser.Game(458, 350*dials, Phaser.AUTO, "main");
+    game = new Phaser.Game("90", 350*dials, Phaser.AUTO, "main",null,true);
     // adding "PlayGame" state
     game.state.add("PlayGame",playGame);
     // launching "PlayGame" state
@@ -94,6 +94,8 @@ playGame.prototype = {
             });
             game.load.image("back", "dials/dial_back.png");
             game.load.image("rebel_back", "dials/rebel_dial_back.png");
+            game.load.image("unlock", "unlock.png");
+            game.load.image("lock", "lock.png");
             game.load.image("pin", "pin.png");     
      },
      // funtion to be executed when the state is created
@@ -114,15 +116,12 @@ playGame.prototype = {
             wheel[key].__mykey = key;
             wheel[key].__movements = dial_movements[init_dials[i]];
             game.add.tween(wheel[key]).to({angle:angles[key]},500,Phaser.Easing.Quadratic.Out,true);
-//            wheel[key].events.onInputDown.add(this.rotate,this);
-            wheel[key].events.onDragStart.add(function(){alert(0);},this);
 
-            dial_backs[key] = game.add.sprite( game.width/2, 350*(i+0.5), 'back' );
-            dial_backs[key].anchor.set(0.5);
-            dial_backs[key].visible = false;
-            dial_backs[key].inputEnabled = true;
-            dial_backs[key].__mykey = key;
-            dial_backs[key].events.onInputDown.add(this.unlockDial,this);
+            // to lock/unlock the dial
+            lock[key] = game.add.sprite(game.width-64, 350*i, 'lock' )
+            lock[key].inputEnabled = true;
+            lock[key].__mykey = key;
+            lock[key].events.onInputDown.add(this.toggleLockDial,this);
 
         }
 
@@ -131,26 +130,16 @@ playGame.prototype = {
         // TODO rotate swipe
         this.saveState();
 	},
-    rotate(o,e){
-        var wheelref = wheel[o.__mykey]
-        var signal = e.clientX>355?+1:-1;
-        var angleIncrement = 360/o.__movements * signal;
-        var spinTween = game.add.tween(wheelref).to({
-            angle: angleIncrement.toString()
-        }, 500, Phaser.Easing.Quadratic.Out, true );
-        var that = this;
-        spinTween.onComplete.add(function(){
-            angles[o.__mykey] = wheelref.angle
-            that.saveState();
-        });
-    },
-    lockDial(o,e){
-        wheel[o.__mykey].visible = false;
-        dial_backs[o.__mykey].visible = true;
-    },
-    unlockDial(o,e){
-        wheel[o.__mykey].visible = true;
-        dial_backs[o.__mykey].visible = false;
+    toggleLockDial(o,e){
+        if ( o.key=='lock' ) {
+            o.loadTexture( 'unlock' )
+            wheel[o.__mykey].alpha =  0.0
+            wheel[o.__mykey].inputEnabled = false
+        } else {
+            o.loadTexture( 'lock' )
+            wheel[o.__mykey].alpha =  1.0
+            wheel[o.__mykey].inputEnabled = true
+        }
     },
     saveState(){
         var obj = {
@@ -170,11 +159,11 @@ playGame.prototype = {
 
                     var angle = Math.asin( delta_x / Math.sqrt( Math.pow( delta_x,2 ) + Math.pow( delta_y,2 ) ) ) * 180/3.141592
 
-                    if ( delta_x>0 && delta_y<0 ) {
+                    if ( delta_x>0 && delta_y<=0 ) {
                         angle = angle;
                     } else if ( delta_x>0 && delta_y>0 ) {
                         angle = 180-angle;
-                    } else if ( delta_x<0 && delta_y>0 ) {
+                    } else if ( delta_x<=0 && delta_y>0 ) {
                         angle = 180-angle;
                     } else {
                         angle = 360+angle;
@@ -188,8 +177,6 @@ playGame.prototype = {
                         wheel[w].angle += delta_angle;
                         angles[w] = wheel[w].angle;
                         this.saveState();
-
-
                     }
 
                     drag_event={angle:angle, mykey:w}
