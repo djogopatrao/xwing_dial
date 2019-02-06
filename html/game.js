@@ -34,6 +34,7 @@ var dial_movements = {   "attack_shuttle": 17,
 };
 var angles = {}
 var dials;
+var ship_qtd = {};
 
 window.onload = function() {	
     if ( !window.sessionStorage.getItem('xwingDials') ) {
@@ -106,10 +107,10 @@ playGame.prototype = {
         for (var i=0;i<dials;i++) {
             var key = "wheel_"+i;
             // add the back dial
-            var backdial = game.add.sprite(game.width /2 , 350*(i+0.5), "rebel_back" );
+            var backdial = game.add.sprite(game.width /2 , 350*(i+0.5)+50, "rebel_back" );
             backdial.anchor.set(0.5);
             // adding the wheel in the middle of the canvas
-            wheel[key] = game.add.sprite(game.width /2 , 350*(i+0.5), init_dials[i]+"_dial" );
+            wheel[key] = game.add.sprite(game.width /2 , 350*(i+0.5)+50, init_dials[i]+"_dial" );
             // setting wheel registration point in its center
             wheel[key].anchor.set(0.5);
             wheel[key].inputEnabled = true;
@@ -122,6 +123,15 @@ playGame.prototype = {
             lock[key].inputEnabled = true;
             lock[key].__mykey = key;
             lock[key].events.onInputDown.add(this.toggleLockDial,this);
+
+            // text
+            if ( ! ship_qtd[init_dials[i]] ) {
+                ship_qtd[init_dials[i]] = 1;
+            } else {
+                ship_qtd[init_dials[i]]++;
+            }
+            var shipname = init_dials[i] + (ship_qtd[init_dials[i]] > 1 ? (" " + ship_qtd[init_dials[i]]) : "");
+            var text = game.add.text( 20, 350*i, shipname, { font: '32px Arial'} )
 
         }
 
