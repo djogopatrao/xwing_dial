@@ -2,7 +2,7 @@
 <html>
 	<head>
 	    <script src="phaser.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
         <script src = "game.js"></script>
@@ -30,33 +30,43 @@
             </nav>
 
             <form id='menubar' class='inline-form'>
+                <div class='form-check form-check-inline' style='font-size:20px'>
+                    <input type=radio class='form-check-input check-faction' value=empire id=check-empire name=check-faction>
+                    <label class=form-check-label for=check-empire>Império</label>
+                </div>
+                <div class='form-check form-check-inline' style='font-size:20px'>
+                    <input type=radio class='form-check-input check-faction' value=rebel id=check-rebel name=check-faction>
+                    <label class=form-check-label for=check-rebel>Rebeldes</label>
+                </div>
+                <div class='form-check form-check-inline' style='font-size:20px'>
+                    <input type=radio class='form-check-input check-faction' value=scum id=check-scum name=check-faction>
+                    <label class=form-check-label for=check-scum>Escória</label>
+                </div>
+
+                <div class='form-check form-check-inline' style='font-size:20px'>
+                    <input type=radio class='form-check-input check-faction' value=fo id=check-fo name=check-faction>
+                    <label class=form-check-label for=check-fo>Primeira Ordem</label>
+                </div>
+                <div class='form-check form-check-inline' style='font-size:20px'>
+                    <input type=radio class='form-check-input check-faction' value=resistence id=check-resistence name=check-faction>
+                    <label class=form-check-label for=check-resistence>Resistência</label>
+                </div>
+
+
                 <div class='form-group'>
                 <select id='select-dial' class='custom-select form-control'>
                     <option value='' default>Escolha sua nave...</option>
-                    <option value='starfighter'>ARC-170 Starfighter*</option>
-                    <option value='attack_shuttle'>Attack Shuttle*</option>
-                    <option value='auzituck'>Auzituck*</option>
-                    <option value='awing'>A-Wing*</option>
-                    <option value='bwing'>B-Wing*</option>
-                    <option value='ewing'>E-Wing</option>
-                    <option value='firespray'>Firespray</option>
-                    <option value='hwk'>HWK-290</option>
-                    <option value='kwing'>K-Wing</option>
-                    <option value='quadjumper'>Quadjumper*</option>
-                    <option value='sheathipede'>Sheathipede*</option>
-                    <option value='t65_xwing'>T65 X-Wing</option>
-                    <option value='uwing'>U-Wing</option>
-                    <option value='vcx100'>VCX-100</option>
-                    <option value='yt1300'>YT1300</option>
-                    <option value='yt2400'>YT2400*</option>
-                    <option value='ywing'>Y-Wing</option>
-                    <option value='headhunter'>Z95 Headhunter*</option>
                 </select>
                 <input type='button' id='show-dial-button' class='btn btn-success' value ='Go!'>
                 </div>
             </form>
             <div id='dial-list'></div>
-            <div id='main'></div>
+            <div id='main'>
+            </div>
+                <footer class='page-footer font-small pt-4' style='font-size:10pt'> 
+                Por Diogo Patrão e Vinícius Candelária (SYNDICATE ABC).
+                Agradecimentos a Jordan Florio (alguns dials foram utilizados do seu google drive).
+                <footer>
         </div>
 
 	</body>

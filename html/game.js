@@ -12,29 +12,13 @@ var lock = {};
 
 var drag_event=null;
 
-// how many maneuvers on eah dial
-var dial_movements = {   "attack_shuttle": 17,
-    "auzituck": 15,
-    "awing": 17,
-    "bwing": 17,
-    "ewing": 20,
-    "firespray": 17,
-    "headhunter": 16,
-    "kwing": 11,
-    "hwk": 15,
-    "quadjumper": 18,
-    "sheathipede": 16,
-    "starfighter": 15,
-    "t65_xwing": 17,
-    "uwing": 13,
-    "vcx100": 17,
-    "yt1300": 17,
-    "yt2400": 17,
-    "ywing": 14
-};
+
 var angles = {}
 var dials;
 var ship_qtd = {};
+
+// data.json (data about ships)
+var ship_data = {}
 
 window.onload = function() {	
     if ( !window.sessionStorage.getItem('xwingDials') ) {
@@ -66,6 +50,36 @@ window.onload = function() {
             angles["wheel_"+i] = 0;
         }
         init_playarea();
+    });
+
+    // select box
+    $('.check-faction').on('click',function(o,e){
+        var faction = $(o.target).val();
+        console.log(ship_data.ships[faction]);
+
+
+
+        $('#select-dial')
+            .find('option')
+            .remove()
+            .end()
+            .append('<option value="" default=1>Escolha sua nave...</option>')
+            .val('')
+        ;
+
+
+        $.each(ship_data.ships[faction],function(i,j){
+            $('#select-dial').append($('<option />').val(i).text(j.title));
+        });
+    });
+
+    // load ship json
+    $.ajax({
+        url:'data.json',
+        dataType: "json",
+        success: function(data){
+            ship_data = data;
+        }
     });
 
 }
@@ -115,7 +129,6 @@ playGame.prototype = {
             wheel[key].anchor.set(0.5);
             wheel[key].inputEnabled = true;
             wheel[key].__mykey = key;
-            wheel[key].__movements = dial_movements[init_dials[i]];
             game.add.tween(wheel[key]).to({angle:angles[key]},500,Phaser.Easing.Quadratic.Out,true);
 
             // to lock/unlock the dial
