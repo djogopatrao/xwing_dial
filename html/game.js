@@ -12,6 +12,11 @@ var lock = {};
 
 var drag_event=null;
 
+var faction = null;
+
+var pilots = null;
+
+var ship = null;
 
 var angles = {}
 var dials;
@@ -33,15 +38,78 @@ window.onload = function() {
         init_playarea()
     }
 
-
-    // hook events to the form
-    $('#select-dial').on('change',function(){
-        init_dials.push( $('#select-dial').val() );
-        var txt="";
-        $(init_dials).each(function(i,v){txt+=v+"<br>"});
-        $('#dial-list').html(txt);
-        $('#select-dial').val("");
+    // load ship json
+    $.ajax({
+        url:'data/data.json',
+        dataType: "json",
+        success: function(data){
+            ship_data = data;
+            // populate faction select box
+            $.each(ship_data.ships,function(i,j){
+                $('#select-faction').append($('<option />').val(i).text(i));
+            });
+        }
     });
+
+
+    
+    // populate ship select box when selecting a faction
+    $('#select-faction').on('change',function(o,e){
+        faction = $(o.target).val();
+        $('#select-dial')
+            .find('option')
+            .remove()
+            .end()
+            .append('<option value="" default=1>Escolha sua nave...</option>')
+            .val('')
+        ;
+
+        $.each(ship_data.ships[faction],function(i,j){
+            $('#select-dial').append($('<option />').val(i).text(j.title));
+        });
+    });
+
+    // populate pilot select box when selecting a ship
+    $('#select-dial').on('change',function(){
+        var ship_id = $('#select-dial').val();
+
+        $.ajax({
+            url: 'data/pilots/'+faction+'/'+ship_id+'.json',
+            dataType: 'json',
+            success: function(data){
+                ship = data;
+                pilots = data.pilots;
+                console.log(pilots);
+                $('#select-pilot')
+                    .find('option')
+                    .remove()
+                    .end()
+                    .append('<option value="" default=1>Escolha seu piloto...</option>')
+                    .val('')
+                ;
+                $(pilots).each(function(k,v){
+                    $('#select-pilot').append($('<option />').val(k).text(v.name));
+                });
+            }
+        });    
+    });
+
+    // add ship when selecting a pilot
+    $('#select-pilot').on('change',function(){
+        var ship_id = $('#select-dial').val();
+        var pilot_id = $('#select-pilot').val();
+        init_dials.push( {
+            ship_id: ship_id,
+            ship_name: ship.name,
+            pilot_name: pilots[pilot_id].name,
+            pilot_initiative: pilots[pilot_id].initiative
+        });
+        var txt="";
+        $(init_dials).each(function(i,v){txt+=ship_data.ships[faction][v.ship_id].title+" - " + v.pilot_name + " (" + v.pilot_initiative + ")<br>"});
+        $('#dial-list').html(txt);
+        $('#select-pilot').val("");
+    })
+
 
     // hook events to the form
     $('#show-dial-button').on('click',function(){
@@ -52,41 +120,35 @@ window.onload = function() {
         init_playarea();
     });
 
-    // select box
-    $('.check-faction').on('click',function(o,e){
-        var faction = $(o.target).val();
-        console.log(ship_data.ships[faction]);
-
-
-
-        $('#select-dial')
-            .find('option')
-            .remove()
-            .end()
-            .append('<option value="" default=1>Escolha sua nave...</option>')
-            .val('')
-        ;
-
-
-        $.each(ship_data.ships[faction],function(i,j){
-            $('#select-dial').append($('<option />').val(i).text(j.title));
-        });
-    });
-
-    // load ship json
-    $.ajax({
-        url:'data.json',
-        dataType: "json",
-        success: function(data){
-            ship_data = data;
-        }
+    $('#erase-dials').on('click',function(){
+        game.destroy();
+        $('#menubar').show();
+        $('#dial-list').show();
+        killSession();
     });
 
 }
 
+function  saveState(){
+    var obj = {
+        dials: dials,
+        angles: angles,
+        init_dials: init_dials
+    };
+    window.sessionStorage.setItem('xwingDials', JSON.stringify(obj) )
+};
+
+function killSession(){
+    init_dials = [];
+    dials = {};
+    angles = {};
+    saveState();
+    window.sessionStorage.removeItem('xwingDials' )
+}
+
 function init_playarea() {
     // creation of a 458x488 game
-    game = new Phaser.Game("90", 350*dials, Phaser.AUTO, "main",null,true);
+    game = new Phaser.Game("95", 350*dials, Phaser.AUTO, "main",null,true);
     // adding "PlayGame" state
     game.state.add("PlayGame",playGame);
     // launching "PlayGame" state
@@ -105,7 +167,7 @@ playGame.prototype = {
      preload: function(){
             // preloading graphic assets
             $(init_dials).each(function(i,v){
-                game.load.image(v+"_dial", "dials/"+v+"_dial.png");
+                game.load.image(v.ship_id+"_dial", "dials/"+v.ship_id+"_dial.png");
             });
             game.load.image("back", "dials/dial_back.png");
             game.load.image("rebel_back", "dials/rebel_dial_back.png");
@@ -121,10 +183,10 @@ playGame.prototype = {
         for (var i=0;i<dials;i++) {
             var key = "wheel_"+i;
             // add the back dial
-            var backdial = game.add.sprite(game.width /2 , 350*(i+0.5)+50, "rebel_back" );
+            var backdial = game.add.sprite(game.width / 2 , 350*(i+0.5)+20, "rebel_back" );
             backdial.anchor.set(0.5);
             // adding the wheel in the middle of the canvas
-            wheel[key] = game.add.sprite(game.width /2 , 350*(i+0.5)+50, init_dials[i]+"_dial" );
+            wheel[key] = game.add.sprite(game.width / 2 , 350*(i+0.5)+20, init_dials[i].ship_id+"_dial" );
             // setting wheel registration point in its center
             wheel[key].anchor.set(0.5);
             wheel[key].inputEnabled = true;
@@ -132,26 +194,27 @@ playGame.prototype = {
             game.add.tween(wheel[key]).to({angle:angles[key]},500,Phaser.Easing.Quadratic.Out,true);
 
             // to lock/unlock the dial
-            lock[key] = game.add.sprite(game.width-64, 350*i, 'lock' )
+            lock[key] = game.add.sprite(game.width-64, 350*i+20, 'lock' )
             lock[key].inputEnabled = true;
             lock[key].__mykey = key;
             lock[key].events.onInputDown.add(this.toggleLockDial,this);
 
             // text
-            if ( ! ship_qtd[init_dials[i]] ) {
-                ship_qtd[init_dials[i]] = 1;
+            var tmp_id = init_dials[i].ship_id+init_dials[i].pilot_name
+            if ( ! ship_qtd[tmp_id] ) {
+                ship_qtd[tmp_id] = 1;
             } else {
-                ship_qtd[init_dials[i]]++;
+                ship_qtd[tmp_id]++;
             }
-            var shipname = init_dials[i] + (ship_qtd[init_dials[i]] > 1 ? (" " + ship_qtd[init_dials[i]]) : "");
-            var text = game.add.text( 20, 350*i, shipname, { font: '32px Arial'} )
+            var shipname = init_dials[i].ship_name + " " + init_dials[i].pilot_name + (ship_qtd[tmp_id] > 1 ? (" #" + ship_qtd[tmp_id]) : "") + " ("+init_dials[i].pilot_initiative+")";
+            var text = game.add.text( 20, 350*i, shipname, { font: '20px Arial'} )
 
         }
 
         // waiting for your input, then calling "spin" function
         //game.input.onDown.add(this.rotate, this);		
         // TODO rotate swipe
-        this.saveState();
+        saveState();
 	},
     toggleLockDial(o,e){
         if ( o.key=='lock' ) {
@@ -163,14 +226,6 @@ playGame.prototype = {
             wheel[o.__mykey].alpha =  1.0
             wheel[o.__mykey].inputEnabled = true
         }
-    },
-    saveState(){
-        var obj = {
-            dials: dials,
-            angles: angles,
-            init_dials: init_dials
-        };
-        window.sessionStorage.setItem('xwingDials', JSON.stringify(obj) )
     },
     update(){
         if (game.input.activePointer.isDown ) {
@@ -199,7 +254,7 @@ playGame.prototype = {
 
                         wheel[w].angle += delta_angle;
                         angles[w] = wheel[w].angle;
-                        this.saveState();
+                        saveState();
                     }
 
                     drag_event={angle:angle, mykey:w}

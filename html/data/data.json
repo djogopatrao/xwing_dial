@@ -1,0 +1,81 @@
+{"ships":{
+        "rebel-alliance": {
+            "arc-170-starfighter": { "title": "ARC-170 Starfighter*" },
+            "attack-shuttle": { "title": "Attack Shuttle*" },
+            "auzituck-gunship": { "title": "Auzituck*" },
+            "rz-1-a-wing": { "title": "A-Wing*" },
+            "a-sf-01-b-wing": { "title": "B-Wing*" },
+            "e-wing": { "title": "E-Wing" },
+            "hwk-290-light-freighter": { "title": "HWK-290" },
+            "btl-s8-k-wing": { "title": "K-Wing" },
+            "sheathipede-class-shuttle": { "title": "Sheathipede*" },
+            "t-65-x-wing": { "title": "T65 X-Wing" },
+            "ut-60d-u-wing": { "title": "U-Wing" },
+            "vcx-100-light-freighter": { "title": "VCX-100" },
+            "modified-yt-1300-light-freighter": { "title": "YT1300" },
+            "yt-2400-light-freighter": { "title": "YT2400*" },
+            "btl-a4-y-wing": { "title": "Y-Wing" },
+            "tie-ln-fighter": { "title": "TIE-Fighter" },
+            "z-95-af4-headhunter": { "title": "Z95 Headhunter*" }
+        },
+        "galactic-empire": {
+            "alpha-class-star-wing": { "title": "Alpha-class*" },
+            "vt-49-decimator": { "title": "VT-49 Decimator*" },
+            "lambda-class-t-4a-shuttle": { "title": "Lambda-class*" },
+            "tie-advanced-v1": { "title": "TIE-Adv. V1 Prototype*" },
+            "tie-advanced-x1": { "title": "TIE-Advanced X1*" },
+            "tie-ag-agressor": { "title": "TIE-Agressor*" },
+            "tie-sa-bomber": { "title": "TIE-Bomber*" },
+            "tie-d-defender": { "title": "TIE-Defender*" },
+            "tie-interceptor": { "title": "TIE-Interceptor*" },
+            "tie-ln-fighter": { "title": "TIE-Fighter*" },
+            "tie-ph-phantom": { "title": "TIE-Phantom*" },
+            "tie-ca-punisher": { "title": "TIE-Punisher*" },
+            "tie-reaper": { "title": "TIE-Reaper*" },
+            "tie-sk-striker": { "title": "TIE-Striker*" }
+        },
+        "scum-and-villainy": {
+            "aggressor-assault-fighter": { "title": "Aggressor"},
+            "btl-a4-y-wing": { "title": "Y-Wing" },
+            "modified-yt-1300-light-freighter": { "title": "YT1300" },
+            "escape-craft": {"title": "Escape Craft"},
+            "fang-fighter": {"title": "Fang Fighter"},
+            "firespray-class-patrol-craft": { "title": "Firespray" },
+            "g-1a-starfighter":{"title": "G-1A"},
+            "hwk-290-light-freighter": { "title": "HWK-290" },
+            "jumpmaster-5000":{"title": "Jumpmaster-5000"},
+            "kihraxz-fighter":{"title": "Kihraxz Fighter"},
+            "lancer-class-pursuit-craft":{"title": "Lancer-Class"},
+            "m3-a-interceptor":{"title": "M3-A"},
+            "m12-l-kimogila-fighter":{"title": "Kimogila"},
+            "modified-tie-ln-fighter":{"title": "Modified TIE-Fighter"},
+            "quadrijet-transfer-spacetug": { "title": "Quadjumper*" },
+            "scurrg-h-6-bomber":{"title": "Scurrg H6"},
+            "starviper-class-attack-platform":{"title": "Starviper"},
+            "yv-666-light-freighter":{"title": "YV666"},
+            "z-95-af4-headhunter": { "title": "Z95 Headhunter*" }
+        },
+        "first-order": {
+            "tie-fo-fighter": { "title": "TIE/FO Fighter"},
+            "tie-sf-fighter": { "title": "TIE/SF Fighter"},
+            "tie-vn-silencer": { "title": "TIE/VN Silencer"},
+            "upsilon-class-command-shuttle": { "title": "Morcegão-Class Command Shuttle"}
+        },
+        "galactic-republic": {
+            "arc-170-starfighter": { "title": "ARC-170 Starfighter*" },
+            "delta-7-aethersprite": { "title": "Delta-7 Aethersprite" },
+            "v-19-torrent-starfighter": {"title": "V-19 Torrent Starfighter"}
+        },
+        "resistance": {
+            "mg-100-starfortress-sf-17": {"title": "MG-100 starfortress sf/17 (bomber)" },
+            "rz-2-a-wing": {"title": "RZ-2 A-Wing"},
+            "scavenged-yt-1300": {"title": "YT-1300"},
+            "t-70-x-wing": {"title": "T-70 X-Wing"}
+        },
+        "separatist-alliance": {
+            "belbullab-22-starfighter": {"title":"Belbullab-22"},
+            "sith-infiltrator":{"title":"Sith Infiltrator"},
+            "vulture-class-droid-fighter":{"title":"Vulture-Class Droid Fighter"}
+        }
+    }
+}

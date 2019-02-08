@@ -30,43 +30,28 @@
             </nav>
 
             <form id='menubar' class='inline-form'>
-                <div class='form-check form-check-inline' style='font-size:20px'>
-                    <input type=radio class='form-check-input check-faction' value=empire id=check-empire name=check-faction>
-                    <label class=form-check-label for=check-empire>Império</label>
-                </div>
-                <div class='form-check form-check-inline' style='font-size:20px'>
-                    <input type=radio class='form-check-input check-faction' value=rebel id=check-rebel name=check-faction>
-                    <label class=form-check-label for=check-rebel>Rebeldes</label>
-                </div>
-                <div class='form-check form-check-inline' style='font-size:20px'>
-                    <input type=radio class='form-check-input check-faction' value=scum id=check-scum name=check-faction>
-                    <label class=form-check-label for=check-scum>Escória</label>
-                </div>
-
-                <div class='form-check form-check-inline' style='font-size:20px'>
-                    <input type=radio class='form-check-input check-faction' value=fo id=check-fo name=check-faction>
-                    <label class=form-check-label for=check-fo>Primeira Ordem</label>
-                </div>
-                <div class='form-check form-check-inline' style='font-size:20px'>
-                    <input type=radio class='form-check-input check-faction' value=resistence id=check-resistence name=check-faction>
-                    <label class=form-check-label for=check-resistence>Resistência</label>
-                </div>
-
 
                 <div class='form-group'>
+                <select id='select-faction' class='custom-select form-control'>
+                    <option value='' default>Escolha sua facção...</option>
+                </select>
                 <select id='select-dial' class='custom-select form-control'>
                     <option value='' default>Escolha sua nave...</option>
+                </select>
+                <select id='select-pilot' class='custom-select form-control'>
+                    <option value='' default>Escolha seu piloto...</option>
                 </select>
                 <input type='button' id='show-dial-button' class='btn btn-success' value ='Go!'>
                 </div>
             </form>
-            <div id='dial-list'></div>
+            <div id='dial-list' style='font-size:20pt'></div>
             <div id='main'>
             </div>
-                <footer class='page-footer font-small pt-4' style='font-size:10pt'> 
-                Por Diogo Patrão e Vinícius Candelária (SYNDICATE ABC).
-                Agradecimentos a Jordan Florio (alguns dials foram utilizados do seu google drive).
-                <footer>
+            <button class='btn btn-danger' id='erase-dials'>Apagar</button>
+            <footer class='page-footer font-small pt-4' style='font-size:10pt'> 
+            Por Diogo Patrão e Vinícius Candelária (SYNDICATE ABC).
+            Agradecimentos a Jordan Florio (alguns dials foram utilizados do seu google drive).
+            <footer>
         </div>
 
 	</body>
