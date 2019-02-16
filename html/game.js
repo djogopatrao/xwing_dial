@@ -107,7 +107,6 @@ window.onload = function() {
         var txt="";
         $(init_dials).each(function(i,v){txt+=ship_data.ships[faction][v.ship_id].title+" - " + v.pilot_name + " (" + v.pilot_initiative + ")<br>"});
         $('#dial-list').html(txt);
-        $('#select-pilot').val("");
     })
 
 
@@ -117,13 +116,16 @@ window.onload = function() {
         for( var i=0;i<dials;i++ ) {
             angles["wheel_"+i] = 0;
         }
+        $('#show-dial-button').hide()
         init_playarea();
     });
 
+    // reset and start again
     $('#erase-dials').on('click',function(){
         game.destroy();
         $('#menubar').show();
         $('#dial-list').show();
+        $('#show-dial-button').show()
         killSession();
     });
 
