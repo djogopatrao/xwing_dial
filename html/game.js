@@ -227,6 +227,7 @@ playGame.prototype = {
             lock[key].inputEnabled = true;
             lock[key].__mykey = key;
             lock[key].events.onInputDown.add(this.toggleLockDial,this);
+            lock[key].events.onInputUp.add(this.releaseLockDial,this);
 
             // text
             var tmp_id = init_dials[i].ship_id+init_dials[i].pilot_name
@@ -235,7 +236,7 @@ playGame.prototype = {
             } else {
                 ship_qtd[tmp_id]++;
             }
-            var shipname = ship_string_id[i]; //createShipName(init_dials[i]);
+            var shipname = ship_string_id[i]; 
             var text = game.add.text( 20, 350*i, shipname, { font: '20px Arial', wordWrap: true, wordWrapWidth: "50%" } )
 
         }
@@ -255,12 +256,16 @@ playGame.prototype = {
             wheel[o.__mykey].alpha =  1.0
             wheel[o.__mykey].inputEnabled = true
         }
+        game.input.touch.preventDefault = true; // disable scroll for now
+    },
+    releaseLockDial(o,e) {
+        game.input.touch.preventDefault = false; // enable scroll for back
     },
     update(){
         if (game.input.activePointer.isDown ) {
             for(var w in wheel) {
                 if ( wheel[w].input.checkPointerOver(game.input.activePointer)) {    
-                game.input.touch.preventDefault = true;
+                    game.input.touch.preventDefault = true; // disable scroll for now
 
                 // pointer is down and is over our sprite, so do something here
                     var delta_x = game.input.x - wheel[w].position.x; 
@@ -295,7 +300,7 @@ playGame.prototype = {
      } else if ( game.input.activePointer.isUp ) {
             if ( drag_event ) {
                 drag_event = false;
-                game.input.touch.preventDefault = false;
+                game.input.touch.preventDefault = false; // enable scroll again
             }
         }
     }
