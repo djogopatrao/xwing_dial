@@ -95,7 +95,7 @@ window.onload = function() {
     });
 
     // add ship when selecting a pilot
-    $('#select-pilot').on('change',function(){
+    $('#add-dial-button').on('click',function(){
         var ship_id = $('#select-dial').val();
         var pilot_id = $('#select-pilot').val();
         init_dials.push( {
