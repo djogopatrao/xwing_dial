@@ -20,6 +20,8 @@ var ship = null;
 
 var ship_string_id = [];
 
+var scroll=null;
+
 var angles = {}
 var dials;
 var ship_qtd = {};
@@ -141,7 +143,7 @@ window.onload = function() {
         $('#show-dial-button').show()
         killSession();
         game.destroy();
-    });
+        });
 
 }
 
@@ -196,6 +198,9 @@ playGame.prototype = {
             game.load.image("unlock", "unlock.png");
             game.load.image("lock", "lock.png");
             game.load.image("pin", "pin.png");     
+            Phaser.Canvas.setTouchAction(game.canvas, "auto"); // disable the default "none" so enable scroll
+            game.input.touch.preventDefault = false;
+
      },
      // funtion to be executed when the state is created
   	create: function(){
@@ -255,6 +260,8 @@ playGame.prototype = {
         if (game.input.activePointer.isDown ) {
             for(var w in wheel) {
                 if ( wheel[w].input.checkPointerOver(game.input.activePointer)) {    
+                game.input.touch.preventDefault = true;
+
                 // pointer is down and is over our sprite, so do something here
                     var delta_x = game.input.x - wheel[w].position.x; 
                     var delta_y = game.input.y - wheel[w].position.y;
@@ -282,11 +289,14 @@ playGame.prototype = {
                     }
 
                     drag_event={angle:angle, mykey:w}
-
+                    return;
                 }
             }
-        } else if ( game.input.activePointer.isUp && drag_event ) {
-            drag_event = false;
+     } else if ( game.input.activePointer.isUp ) {
+            if ( drag_event ) {
+                drag_event = false;
+                game.input.touch.preventDefault = false;
+            }
         }
     }
 }
