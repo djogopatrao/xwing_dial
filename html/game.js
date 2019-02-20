@@ -7,6 +7,9 @@ var init_dials = [];
 // the spinning wheel DIALS
 var wheel = {};
 
+// red frame selector
+var selector = {}
+
 //
 var lock = {};
 
@@ -198,6 +201,7 @@ playGame.prototype = {
             game.load.image("unlock", "unlock.png");
             game.load.image("lock", "lock.png");
             game.load.image("pin", "pin.png");     
+            game.load.image("dial_selector", "dial_selector.png")
             Phaser.Canvas.setTouchAction(game.canvas, "auto"); // disable the default "none" so enable scroll
             game.input.touch.preventDefault = false;
 
@@ -209,25 +213,29 @@ playGame.prototype = {
 
         for (var i=0;i<dials;i++) {
             var key = "wheel_"+i;
+
             // add the back dial
             var backdial = game.add.sprite(game.width / 2 , 350*(i+0.5)+20, "rebel_back" );
             backdial.anchor.set(0.5);
 
             // adding the wheel in the middle of the canvas
             wheel[key] = game.add.sprite(game.width / 2 , 350*(i+0.5)+20, init_dials[i].ship_id+"_dial" );
-
-            // setting wheel registration point in its center
             wheel[key].anchor.set(0.5);
             wheel[key].inputEnabled = true;
             wheel[key].__mykey = key;
             game.add.tween(wheel[key]).to({angle:angles[key]},500,Phaser.Easing.Quadratic.Out,true);
 
             // to lock/unlock the dial
-            lock[key] = game.add.sprite(game.width-64, 350*i+20, 'lock' )
+            lock[key] = game.add.sprite(game.width-64, 350*i+20, 'unlock' )
             lock[key].inputEnabled = true;
             lock[key].__mykey = key;
             lock[key].events.onInputDown.add(this.toggleLockDial,this);
             lock[key].events.onInputUp.add(this.releaseLockDial,this);
+
+            // dial selector
+            selector[key] = game.add.sprite( game.width/2, 350*i+100, "dial_selector" );
+            selector[key].anchor.set(0.5);
+            selector[key].inputEnabled = false;
 
             // text
             var tmp_id = init_dials[i].ship_id+init_dials[i].pilot_name
@@ -247,14 +255,16 @@ playGame.prototype = {
         saveState();
 	},
     toggleLockDial(o,e){
-        if ( o.key=='lock' ) {
-            o.loadTexture( 'unlock' )
+        if ( o.key=='unlock' ) {
+            o.loadTexture( 'lock' )
             wheel[o.__mykey].alpha =  0.0
             wheel[o.__mykey].inputEnabled = false
+            selector[o.__mykey].alpha = 0.0;
         } else {
-            o.loadTexture( 'lock' )
+            o.loadTexture( 'unlock' )
             wheel[o.__mykey].alpha =  1.0
             wheel[o.__mykey].inputEnabled = true
+            selector[o.__mykey].alpha = 1.0;
         }
         game.input.touch.preventDefault = true; // disable scroll for now
     },
