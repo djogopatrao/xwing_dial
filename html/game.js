@@ -109,9 +109,14 @@ window.onload = function() {
         var new_ship = {
             ship_id: ship_id,
             ship_name: ship.name,
-            pilot_name: pilots[pilot_id].name,
-            pilot_initiative: pilots[pilot_id].initiative
         };
+        if ( pilot_id ) {
+            new_ship.pilot_name = pilots[pilot_id].name,
+            new_ship.pilot_initiative = pilots[pilot_id].initiative
+        } else {
+            new_ship.pilot_name = "Piloto",
+            new_ship.pilot_initiative = 0
+        }
         init_dials.push( new_ship );
         
         ship_string_id.push( createShipName(new_ship) )
@@ -134,7 +139,6 @@ window.onload = function() {
         for( var i=0;i<dials;i++ ) {
             angles["wheel_"+i] = 0;
         }
-        $('#show-dial-button').hide()
         init_playarea();
     });
 
@@ -183,6 +187,7 @@ function init_playarea() {
 
     $('#menubar').hide();
     $('#dial-list').hide();
+    $('#show-dial-button').hide()
 }
 
 // PLAYGAME STATE
