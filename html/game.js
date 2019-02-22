@@ -268,6 +268,7 @@ playGame.prototype = {
             game.load.image("lock", "lock.png");
             game.load.image("pin", "pin.png");     
             game.load.image("dial_selector", "dial_selector.png")
+            game.load.image("window_damage","window_damage.png")
 
             // load damage deck json
             $.ajax( {
@@ -306,6 +307,7 @@ playGame.prototype = {
             wheel[key].inputEnabled = true;
             wheel[key].__mykey = key;
             wheel[key].__myindex = i; 
+            wheel[key].__mystate = 'wheel'; // or damage 
             game.add.tween(wheel[key]).to({angle:angles[key]},500,Phaser.Easing.Quadratic.Out,true);
 
             // to lock/unlock the dial
@@ -320,17 +322,43 @@ playGame.prototype = {
             selector[key].anchor.set(0.5);
             selector[key].inputEnabled = false;
 
-            // hit and critical hit button
-            wheel[key].__hit_button = game.add.text( game.width-208, 350*i+20, 'Hit', {font: '20px Arial', backgroundColor: 'orange' });
+            // damage "window" button
+            wheel[key].__damage_button = game.add.text( game.width-64, 350*i+90, 'DAM\nAGE', {font: '20px Arial', backgroundColor: 'orange' });
+            wheel[key].__damage_button.inputEnabled = true
+            wheel[key].__damage_button.events.onInputDown.add( this.toggleDamage, this );
+            wheel[key].__damage_button.__mykey = key;
+
+
+            // damage "window"
+            wheel[key].__damage_window = game.add.sprite( 20, 350*i+90, 'window_damage' )
+            wheel[key].__damage_window.alpha = 0.0;
+            wheel[key].__damage_window.inputEnabled = false
+
+            // damage text (the list of damages)
+            wheel[key].__damage_text = game.add.text( 20, 350*i+90, 'Cartas de dano:', {font: '14px Arial' });
+            wheel[key].__damage_text.inputEnabled = true
+            wheel[key].__damage_text.events.onInputDown.add( this.toggleDamage, this );
+            wheel[key].__damage_text.__mykey = key;
+            wheel[key].__damage_text.alpha = 0.0;
+            wheel[key].__damage_text.inputEnabled = false
+
+            // damage buttons (to give a hit or crit damage)
+            wheel[key].__hit_button = game.add.text( 200, 350*i+90, 'Hit', {font: '20px Arial', backgroundColor: 'orange' });
             wheel[key].__hit_button.inputEnabled = true
             wheel[key].__hit_button.events.onInputDown.add( this.giveHit, this );
             wheel[key].__hit_button.__mykey = key;
-            wheel[key].__crit_button = game.add.text( game.width-256, 350*i+20, 'Crit', {font: '20px Arial', backgroundColor: 'yellow' });
+            wheel[key].__hit_button.alpha = 0.0 //invisible
+            wheel[key].__hit_button.inputEnabled = false
+
+            wheel[key].__crit_button = game.add.text( 226, 350*i+90, 'Crit', {font: '20px Arial', backgroundColor: 'yellow' });
             wheel[key].__crit_button.inputEnabled = true
             wheel[key].__crit_button.events.onInputDown.add( this.giveCrit, this );
             wheel[key].__crit_button.__mykey = key;
-            
-            // text
+            wheel[key].__crit_button.alpha = 0.0 //invisible
+            wheel[key].__crit_button.inputEnabled = false
+
+
+            // ship title
             var tmp_id = init_dials[i].ship_id+init_dials[i].pilot_name
             if ( ! ship_qtd[tmp_id] ) {
                 ship_qtd[tmp_id] = 1;
@@ -364,14 +392,40 @@ playGame.prototype = {
     releaseLockDial(o,e) {
         game.input.touch.preventDefault = false; // enable scroll for back
     },
+    toggleDamage(o,e) {
+        var key = o.__mykey;
+        if ( wheel[key].__mystate == 'wheel' ) {
+            wheel[key].__damage_window.alpha = 1.0;
+            wheel[key].__damage_text.alpha = 1.0;
+            wheel[key].__hit_button.alpha = 1.0;
+            wheel[key].__crit_button.alpha = 1.0;
+            wheel[key].__damage_window.inputEnabled = true;
+            wheel[key].__damage_text.inputEnabled = true;
+            wheel[key].__hit_button.inputEnabled = true;
+            wheel[key].__crit_button.inputEnabled = true;
+            wheel[key].__mystate = 'damage';
+        } else if ( wheel[key].__mystate == 'damage' ) {
+            wheel[key].__damage_window.alpha = 0.0;
+            wheel[key].__damage_text.alpha = 0.0;
+            wheel[key].__hit_button.alpha = 0.0;
+            wheel[key].__crit_button.alpha = 0.0;
+            wheel[key].__damage_window.inputEnabled = false;
+            wheel[key].__damage_text.inputEnabled = false;
+            wheel[key].__hit_button.inputEnabled = false;
+            wheel[key].__crit_button.inputEnabled = false;
+            wheel[key].__mystate = 'wheel';
+        } else {
+            alert("Estado '"+wheel[key].__mystate+"' inválido! mande um print pro desenvolvedor q é bug!");
+        }
+    },
     giveHit(o,e) {
         var card = drawDamageCard();
         var i = wheel[ o.__mykey ].__myindex;
         if ( !ship_damage[o.__mykey] ) {
             ship_damage[o.__mykey] = []
         }
-        ship_damage[o.__mykey].push( { card: card, flipped: o} );
-        var critText = game.add.text( game.width-256, 350*i+20*ship_damage[o.__mykey].length+20, "Hit", {font: '20px Arial'});
+        ship_damage[o.__mykey].push( { card: card, flipped: 0} );
+        this.updateDamageText(o.__mykey);
     },
     giveCrit(o,e) {
         var card = drawDamageCard();
@@ -380,8 +434,19 @@ playGame.prototype = {
             ship_damage[o.__mykey] = []
         }
         ship_damage[o.__mykey].push( { card: card, flipped: 1} );
-        var critText = game.add.text( game.width-256, 350*i+20*ship_damage[o.__mykey].length+20, card.title, {font: '20px Arial'});
+        this.updateDamageText(o.__mykey);
 
+    },
+    updateDamageText(shipKey) {
+        var text = "Cartas de dano:\n";
+        $( ship_damage[shipKey] ).each(function(i,x){
+            if ( x.flipped ) {
+                text += x.card.title+"\n";
+            } else {
+                text += "Hit\n";
+            }            
+        });
+        wheel[shipKey].__damage_text.setText(text);
     },
     update(){
         if (game.input.activePointer.isDown ) {
