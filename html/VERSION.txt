@@ -1,0 +1,2 @@
+1.1 -> fix do dial da lambda; dial syndicate da tie/fo, tie/vn e upsilon. faltando a da tie/sf ainda
+1.0 -> primeira versão publicada
