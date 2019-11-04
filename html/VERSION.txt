@@ -1,2 +1,10 @@
+1.3 -> novos dials:
+	naboo royal r-1
+	btl-b ywing
+	resistance transport
+	resistance pod
+	hyena
+	nantex
+1.2 -> fix do dial da ywing (preview); fix adicionando dials da belbubbab, sith infiltrator, delta7, v19, vulture class
 1.1 -> fix do dial da lambda; dial syndicate da tie/fo, tie/vn e upsilon. faltando a da tie/sf ainda
 1.0 -> primeira versão publicada

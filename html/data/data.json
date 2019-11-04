@@ -59,21 +59,29 @@
             "tie-fo-fighter": { "title": "TIE/FO Fighter"},
             "tie-sf-fighter": { "title": "TIE/SF Fighter"},
             "tie-vn-silencer": { "title": "TIE/VN Silencer"},
-            "upsilon-class-command-shuttle": { "title": "Morcegão-Class Command Shuttle"}
+            "upsilon-class-command-shuttle": { "title": "Morcegão-Class Command Shuttle"},
+            "tie-ba-interceptor" : {"title":"TIE/ba interceptor"}
         },
         "galactic-republic": {
             "arc-170-starfighter": { "title": "ARC-170 Starfighter*" },
             "delta-7-aethersprite": { "title": "Delta-7 Aethersprite" },
-            "v-19-torrent-starfighter": {"title": "V-19 Torrent Starfighter"}
+            "v-19-torrent-starfighter": {"title": "V-19 Torrent Starfighter"},
+            "btl-b-y-wing" : { "title": "BTL-B Y-Wing" },
+            "naboo-royal-n-1-starfighter" : {"title":"Naboo Royal N-1 Starfighter"}
         },
         "resistance": {
             "mg-100-starfortress-sf-17": {"title": "MG-100 starfortress sf/17 (bomber)" },
             "rz-2-a-wing": {"title": "RZ-2 A-Wing"},
             "scavenged-yt-1300": {"title": "YT-1300"},
-            "t-70-x-wing": {"title": "T-70 X-Wing"}
+            "t-70-x-wing": {"title": "T-70 X-Wing"},
+            "fireball" : {"title":"Fireball"},
+            "resistance-transport" : {"title":"Resistance Transport"},
+            "resistance-transport-pod" : {"title":"Resistance Transport Pod"}
         },
         "separatist-alliance": {
             "belbullab-22-starfighter": {"title":"Belbullab-22"},
+            "hyena-class-droid-bomber":{"title":"Hyena-class Droid Bomber"},
+            "nantex-class-starfighter":{"title":"Nantex-class Starfighter"},
             "sith-infiltrator":{"title":"Sith Infiltrator"},
             "vulture-class-droid-fighter":{"title":"Vulture-Class Droid Fighter"}
         }
