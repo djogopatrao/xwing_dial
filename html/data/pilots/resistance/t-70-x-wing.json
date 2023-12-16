@@ -1,7 +1,6 @@
 {
   "name": "T-70 X-wing",
   "xws": "t70xwing",
-  "ffg": 53,
   "size": "Small",
   "dial": [
     "1BB",
@@ -22,7 +21,8 @@
     "4FW",
     "4KR"
   ],
-  "faction": "Resistance",
+  "dialCodes": ["T70"],
+  "faction": "resistance",
   "stats": [
     { "arc": "Front Arc", "type": "attack", "value": 3 },
     { "type": "agility", "value": 2 },
@@ -34,7 +34,7 @@
     { "difficulty": "White", "type": "Lock" },
     { "difficulty": "White", "type": "Boost" }
   ],
-  "icon": "https://sb-cdn.fantasyflightgames.com/ship_types/I_X-wing-T70.png",
+  "icon": "https://infinitearenas.com/xw2/images/shipicons/resistance/I_X-wing-T70.png",
   "pilots": [
     {
       "name": "Poe Dameron",
@@ -47,20 +47,55 @@
         "name": "Weapon Hardpoint",
         "text": "You can equip 1 [Cannon], [Torpedo], or [Missile] upgrade."
       },
-      "image": "https://sb-cdn.fantasyflightgames.com/card_images/en/14c504c0815213a66010c4013d9296ee.png",
-      "artwork": "https://sb-cdn.fantasyflightgames.com/card_art/cb8efd0b723b8ceb0c35b7a64b309bf2.jpg",
-      "cost": 68,
+      "image": "https://infinitearenas.com/xw2/images/pilots/poedameron.png",
+      "artwork": "https://infinitearenas.com/xw2/images/artwork/pilots/poedameron.png",
+      "cost": 7,
+      "loadout": 25,
       "charges": { "value": 1, "recovers": 1 },
       "slots": [
         "Talent",
         "Astromech",
         "Modification",
+        "Modification",
+        "Torpedo",
         "Title",
         "Configuration",
         "Tech"
       ],
-      "ffg": 418,
-      "hyperspace": true
+      "standard": true,
+      "extended": true,
+      "keywords": ["X-wing"],
+      "epic": true
+    },
+    {
+      "name": "Poe Dameron",
+      "caption": "Resistance Commander",
+      "initiative": 6,
+      "limited": 1,
+      "xws": "poedameron-swz68",
+      "ability": "After a friendly ship at range 0-2 performs an action during its activation, you may spend 2 [Charge]. If you do, that ship may perform a white action, treating it as red.",
+      "shipAbility": {
+        "name": "Weapon Hardpoint",
+        "text": "You can equip 1 [Cannon], [Torpedo], or [Missile] upgrade."
+      },
+      "cost": 6,
+      "loadout": 19,
+      "charges": { "value": 2, "recovers": 1 },
+      "slots": [
+        "Talent",
+        "Talent",
+        "Astromech",
+        "Modification",
+        "Configuration",
+        "Tech",
+        "Tech"
+      ],
+      "standard": true,
+      "extended": true,
+      "image": "https://infinitearenas.com/xw2/images/pilots/poedameron-swz68.png",
+      "artwork": "https://infinitearenas.com/xw2/images/artwork/pilots/poedameron-swz68.png",
+      "keywords": ["X-wing"],
+      "epic": true
     },
     {
       "name": "Blue Squadron Rookie",
@@ -72,12 +107,15 @@
         "name": "Weapon Hardpoint",
         "text": "You can equip 1 [Cannon], [Torpedo], or [Missile] upgrade."
       },
-      "image": "https://sb-cdn.fantasyflightgames.com/card_images/en/a82a39a4c9baf883fbc6ae353abdd2ec.png",
-      "artwork": "https://sb-cdn.fantasyflightgames.com/card_art/8ceeaf3d985f16da8b8d5a1ebc49ea2b.jpg",
-      "cost": 45,
-      "slots": ["Astromech", "Modification", "Title", "Configuration", "Tech"],
-      "ffg": 426,
-      "hyperspace": true
+      "image": "https://infinitearenas.com/xw2/images/pilots/bluesquadronrookie.png",
+      "artwork": "https://infinitearenas.com/xw2/images/artwork/pilots/bluesquadronrookie.png",
+      "cost": 5,
+      "loadout": 4,
+      "slots": ["Astromech", "Modification", "Configuration", "Tech"],
+      "standard": true,
+      "extended": true,
+      "keywords": ["X-wing"],
+      "epic": true
     },
     {
       "name": "Red Squadron Expert",
@@ -89,19 +127,15 @@
         "name": "Weapon Hardpoint",
         "text": "You can equip 1 [Cannon], [Torpedo], or [Missile] upgrade."
       },
-      "image": "https://sb-cdn.fantasyflightgames.com/card_images/en/58967d94cfef285c4df2fdbb77fd0502.png",
-      "artwork": "https://sb-cdn.fantasyflightgames.com/card_art/0e847453270afe089ea331316f7b7731.jpg",
-      "cost": 47,
-      "slots": [
-        "Talent",
-        "Astromech",
-        "Modification",
-        "Title",
-        "Configuration",
-        "Tech"
-      ],
-      "ffg": 425,
-      "hyperspace": true
+      "image": "https://infinitearenas.com/xw2/images/pilots/redsquadronexpert.png",
+      "artwork": "https://infinitearenas.com/xw2/images/artwork/pilots/redsquadronexpert.png",
+      "cost": 5,
+      "loadout": 2,
+      "slots": ["Talent", "Astromech", "Modification", "Configuration", "Tech"],
+      "standard": true,
+      "extended": true,
+      "keywords": ["X-wing"],
+      "epic": true
     },
     {
       "name": "Black Squadron Ace",
@@ -113,19 +147,15 @@
         "name": "Weapon Hardpoint",
         "text": "You can equip 1 [Cannon], [Torpedo], or [Missile] upgrade."
       },
-      "image": "https://sb-cdn.fantasyflightgames.com/card_images/en/d2b6a5166b3fd985df5d1941408b58e1.png",
-      "artwork": "https://sb-cdn.fantasyflightgames.com/card_art/e75228d8174f7879c51157fdd9b26e61.jpg",
-      "cost": 49,
-      "slots": [
-        "Talent",
-        "Astromech",
-        "Modification",
-        "Title",
-        "Configuration",
-        "Tech"
-      ],
-      "ffg": 451,
-      "hyperspace": true
+      "image": "https://infinitearenas.com/xw2/images/pilots/blacksquadronace-t70xwing.png",
+      "artwork": "https://infinitearenas.com/xw2/images/artwork/pilots/blacksquadronace-t70xwing.png",
+      "cost": 5,
+      "loadout": 10,
+      "slots": ["Talent", "Astromech", "Modification", "Configuration", "Tech"],
+      "standard": true,
+      "extended": true,
+      "keywords": ["X-wing"],
+      "epic": true
     },
     {
       "name": "Ello Asty",
@@ -138,19 +168,22 @@
         "name": "Weapon Hardpoint",
         "text": "You can equip 1 [Cannon], [Torpedo], or [Missile] upgrade."
       },
-      "cost": 56,
+      "cost": 4,
+      "loadout": 8,
       "slots": [
+        "Talent",
         "Talent",
         "Astromech",
         "Modification",
-        "Title",
         "Configuration",
         "Tech"
       ],
-      "image": "https://sb-cdn.fantasyflightgames.com/card_images/en/f77180ae05fd919a0dff2225380246a6.png",
-      "artwork": "https://sb-cdn.fantasyflightgames.com/card_art/ff73537d7ab2f063e7a510c05013269e.jpg",
-      "ffg": 419,
-      "hyperspace": true
+      "image": "https://infinitearenas.com/xw2/images/pilots/elloasty.png",
+      "artwork": "https://infinitearenas.com/xw2/images/artwork/pilots/elloasty.png",
+      "standard": true,
+      "extended": true,
+      "keywords": ["X-wing"],
+      "epic": true
     },
     {
       "name": "Joph Seastriker",
@@ -163,22 +196,18 @@
         "name": "Weapon Hardpoint",
         "text": "You can equip 1 [Cannon], [Torpedo], or [Missile] upgrade."
       },
-      "cost": 51,
-      "slots": [
-        "Talent",
-        "Astromech",
-        "Modification",
-        "Title",
-        "Configuration",
-        "Tech"
-      ],
-      "image": "https://sb-cdn.fantasyflightgames.com/card_images/en/df85f5b77e16363a05c8f68792440166.png",
-      "artwork": "https://sb-cdn.fantasyflightgames.com/card_art/b5b43d179b039649e764e6bd4f212a29.jpg",
-      "ffg": 424,
-      "hyperspace": true
+      "cost": 5,
+      "loadout": 13,
+      "slots": ["Talent", "Astromech", "Modification", "Configuration", "Tech"],
+      "image": "https://infinitearenas.com/xw2/images/pilots/jophseastriker.png",
+      "artwork": "https://infinitearenas.com/xw2/images/artwork/pilots/jophseastriker.png",
+      "standard": true,
+      "extended": true,
+      "keywords": ["X-wing"],
+      "epic": true
     },
     {
-      "name": "Kare Kun",
+      "name": "Karé Kun",
       "caption": "Woman of Action",
       "initiative": 4,
       "limited": 1,
@@ -188,19 +217,22 @@
         "name": "Weapon Hardpoint",
         "text": "You can equip 1 [Cannon], [Torpedo], or [Missile] upgrade."
       },
-      "cost": 52,
+      "cost": 4,
+      "loadout": 8,
       "slots": [
         "Talent",
         "Astromech",
         "Modification",
-        "Title",
         "Configuration",
+        "Cannon",
         "Tech"
       ],
-      "image": "https://sb-cdn.fantasyflightgames.com/card_images/en/6edb8ed4cbf882bf6dbe7a37b5981d85.png",
-      "artwork": "https://sb-cdn.fantasyflightgames.com/card_art/f121bc27f2b283258a65d348bcafe40d.jpg",
-      "ffg": 421,
-      "hyperspace": true
+      "image": "https://infinitearenas.com/xw2/images/pilots/karekun.png",
+      "artwork": "https://infinitearenas.com/xw2/images/artwork/pilots/karekun.png",
+      "standard": true,
+      "extended": true,
+      "keywords": ["X-wing"],
+      "epic": true
     },
     {
       "name": "Lieutenant Bastian",
@@ -213,12 +245,15 @@
         "name": "Weapon Hardpoint",
         "text": "You can equip 1 [Cannon], [Torpedo], or [Missile] upgrade."
       },
-      "image": "https://sb-cdn.fantasyflightgames.com/card_images/en/3f43d6b3c6e87bde6a681e9d4421dec8.png",
-      "artwork": "https://sb-cdn.fantasyflightgames.com/card_art/52f96e7e98dc51c1280052514e303704.jpg",
-      "cost": 48,
-      "slots": ["Astromech", "Modification", "Title", "Configuration", "Tech"],
-      "ffg": 449,
-      "hyperspace": true
+      "image": "https://infinitearenas.com/xw2/images/pilots/lieutenantbastian.png",
+      "artwork": "https://infinitearenas.com/xw2/images/artwork/pilots/lieutenantbastian.png",
+      "cost": 5,
+      "loadout": 14,
+      "slots": ["Astromech", "Modification", "Configuration", "Tech"],
+      "standard": true,
+      "extended": true,
+      "keywords": ["X-wing"],
+      "epic": true
     },
     {
       "name": "Nien Nunb",
@@ -231,19 +266,22 @@
         "name": "Weapon Hardpoint",
         "text": "You can equip 1 [Cannon], [Torpedo], or [Missile] upgrade."
       },
-      "cost": 55,
+      "cost": 5,
+      "loadout": 16,
       "slots": [
         "Talent",
         "Astromech",
+        "Missile",
         "Modification",
-        "Title",
         "Configuration",
         "Tech"
       ],
-      "image": "https://sb-cdn.fantasyflightgames.com/card_images/en/00a3c393a33b33168bc61e47749e1474.png",
-      "artwork": "https://sb-cdn.fantasyflightgames.com/card_art/5daa441317975eb576396af36e852f74.jpg",
-      "ffg": 420,
-      "hyperspace": true
+      "image": "https://infinitearenas.com/xw2/images/pilots/niennunb.png",
+      "artwork": "https://infinitearenas.com/xw2/images/artwork/pilots/niennunb.png",
+      "standard": true,
+      "extended": true,
+      "keywords": ["X-wing"],
+      "epic": true
     },
     {
       "name": "Jaycris Tubbs",
@@ -256,12 +294,15 @@
         "name": "Weapon Hardpoint",
         "text": "You can equip 1 [Cannon], [Torpedo], or [Missile] upgrade."
       },
-      "image": "https://sb-cdn.fantasyflightgames.com/card_images/en/5f3abacb9a081f5a3ca42f7a30da0e6c.png",
-      "artwork": "https://sb-cdn.fantasyflightgames.com/card_art/8874efb312a64da49889c66f96338f9c.jpg",
-      "cost": 49,
-      "slots": ["Astromech", "Modification", "Title", "Configuration", "Tech"],
-      "ffg": 450,
-      "hyperspace": true
+      "image": "https://infinitearenas.com/xw2/images/pilots/jaycristubbs.png",
+      "artwork": "https://infinitearenas.com/xw2/images/artwork/pilots/jaycristubbs.png",
+      "cost": 4,
+      "loadout": 8,
+      "slots": ["Astromech", "Modification", "Configuration", "Tech"],
+      "standard": true,
+      "extended": true,
+      "keywords": ["X-wing"],
+      "epic": true
     },
     {
       "name": "Jessika Pava",
@@ -274,13 +315,16 @@
         "name": "Weapon Hardpoint",
         "text": "You can equip 1 [Cannon], [Torpedo], or [Missile] upgrade."
       },
-      "image": "https://sb-cdn.fantasyflightgames.com/card_images/en/bc26d8864f421f1362473aa4982108ba.png",
-      "artwork": "https://sb-cdn.fantasyflightgames.com/card_art/05c48dc381e54c6951d3ee42d3587577.jpg",
-      "cost": 51,
+      "image": "https://infinitearenas.com/xw2/images/pilots/jessikapava.png",
+      "artwork": "https://infinitearenas.com/xw2/images/artwork/pilots/jessikapava.png",
+      "cost": 4,
+      "loadout": 7,
       "charges": { "value": 1, "recovers": 1 },
-      "slots": ["Astromech", "Modification", "Title", "Configuration", "Tech"],
-      "ffg": 423,
-      "hyperspace": true
+      "slots": ["Astromech", "Modification", "Configuration", "Tech"],
+      "standard": true,
+      "extended": true,
+      "keywords": ["X-wing"],
+      "epic": true
     },
     {
       "name": "Temmin Wexley",
@@ -293,19 +337,150 @@
         "name": "Weapon Hardpoint",
         "text": "You can equip 1 [Cannon], [Torpedo], or [Missile] upgrade."
       },
-      "image": "https://sb-cdn.fantasyflightgames.com/card_images/en/bb98b7ea3a580542b586a9999fd352c9.png",
-      "artwork": "https://sb-cdn.fantasyflightgames.com/card_art/6acd118b12a34136d4d1df6c765a0deb.jpg",
-      "cost": 54,
+      "image": "https://infinitearenas.com/xw2/images/pilots/temminwexley.png",
+      "artwork": "https://infinitearenas.com/xw2/images/artwork/pilots/temminwexley.png",
+      "cost": 4,
+      "loadout": 9,
       "slots": [
         "Talent",
         "Astromech",
         "Modification",
-        "Title",
+        "Modification",
         "Configuration",
         "Tech"
       ],
-      "ffg": 422,
-      "hyperspace": true
+      "standard": true,
+      "extended": true,
+      "keywords": ["X-wing"],
+      "epic": true
+    },
+    {
+      "name": "Temmin Wexley",
+      "caption": "Black Two",
+      "initiative": 4,
+      "limited": 1,
+      "xws": "temminwexley-swz68",
+      "ability": "At the start of the Engagement Phase, each friendly T-70 X-wing at range 0-3 may gain 1 strain token to flip its equipped [Configuration] upgrade. If it does, that ship gains 1 calculate token.",
+      "shipAbility": {
+        "name": "Weapon Hardpoint",
+        "text": "You can equip 1 [Cannon], [Torpedo], or [Missile] upgrade."
+      },
+      "cost": 5,
+      "loadout": 13,
+      "slots": [
+        "Talent",
+        "Astromech",
+        "Modification",
+        "Configuration",
+        "Tech",
+        "Tech"
+      ],
+      "standard": true,
+      "extended": true,
+      "image": "https://infinitearenas.com/xw2/images/pilots/temminwexley-swz68.png",
+      "artwork": "https://infinitearenas.com/xw2/images/artwork/pilots/temminwexley-swz68.png",
+      "keywords": ["X-wing"],
+      "epic": true
+    },
+    {
+      "name": "C’ai Threnalli",
+      "caption": "Tenacious Survivor",
+      "initiative": 4,
+      "limited": 1,
+      "xws": "caithrenalli",
+      "ability": "After you fully execute a maneuver, if you moved through a friendly ship, you may perform an [Evade] action.",
+      "shipAbility": {
+        "name": "Weapon Hardpoint",
+        "text": "You can equip 1 [Cannon], [Torpedo], or [Missile] upgrade."
+      },
+      "cost": 4,
+      "loadout": 7,
+      "slots": ["Talent", "Astromech", "Modification", "Configuration", "Tech"],
+      "standard": true,
+      "extended": true,
+      "image": "https://infinitearenas.com/xw2/images/pilots/caithrenalli.png",
+      "artwork": "https://infinitearenas.com/xw2/images/artwork/pilots/caithrenalli.png",
+      "keywords": ["X-wing"],
+      "epic": true
+    },
+    {
+      "name": "Nimi Chireen",
+      "xws": "nimichireen",
+      "initiative": 2,
+      "limited": 1,
+      "shipAbility": {
+        "name": "Weapon Hardpoint",
+        "text": "You can equip 1 [Cannon], [Torpedo], or [Missile] upgrade."
+      },
+      "caption": "Hopeful Hero",
+      "standard": true,
+      "extended": true,
+      "cost": 4,
+      "loadout": 9,
+      "slots": ["Tech", "Astromech", "Modification", "Configuration"],
+      "ability": "While you perform an attack, if the defender's initiative is higher than yours, you may change 1 blank result to a [Focus] result.",
+      "image": "https://infinitearenas.com/xw2/images/pilots/nimichireen.png",
+      "artwork": "https://infinitearenas.com/xw2/images/artwork/pilots/nimichireen.png",
+      "keywords": ["X-wing"],
+      "epic": true
+    },
+    {
+      "name": "Venisa Doza",
+      "xws": "venisadoza",
+      "initiative": 4,
+      "limited": 1,
+      "shipAbility": {
+        "name": "Weapon Hardpoint",
+        "text": "You can equip 1 [Cannon], [Torpedo], or [Missile] upgrade."
+      },
+      "caption": "Jade Leader",
+      "standard": true,
+      "extended": true,
+      "cost": 4,
+      "loadout": 7,
+      "slots": [
+        "Talent",
+        "Tech",
+        "Missile",
+        "Missile",
+        "Astromech",
+        "Modification",
+        "Modification",
+        "Configuration"
+      ],
+      "ability": "While you perform a [Torpedo] or [Missile] attack, you may treat the [Front Arc] requirement as [Rear Arc] for that attack. If you do, treat the range requirement as 1-2.",
+      "image": "https://infinitearenas.com/xw2/images/pilots/venisadoza.png",
+      "artwork": "https://infinitearenas.com/xw2/images/artwork/pilots/venisadoza.png",
+      "keywords": ["X-wing"],
+      "epic": true
+    },
+    {
+      "name": "Zay Versio",
+      "xws": "zayversio",
+      "initiative": 3,
+      "limited": 1,
+      "shipAbility": {
+        "name": "Weapon Hardpoint",
+        "text": "You can equip 1 [Cannon], [Torpedo], or [Missile] upgrade."
+      },
+      "caption": "Her Father's Daughter",
+      "standard": true,
+      "extended": true,
+      "cost": 4,
+      "loadout": 7,
+      "slots": [
+        "Talent",
+        "Talent",
+        "Tech",
+        "Astromech",
+        "Modification",
+        "Configuration"
+      ],
+      "ability": "While you defend, if the attacker is damaged, you may reroll 1 defense die.",
+      "image": "https://infinitearenas.com/xw2/images/pilots/zayversio.png",
+      "artwork": "https://infinitearenas.com/xw2/images/artwork/pilots/zayversio.png",
+      "keywords": ["X-wing"],
+      "epic": true
     }
   ]
 }

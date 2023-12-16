@@ -2,7 +2,6 @@
   "name": "Naboo Royal N-1 Starfighter",
   "xws": "nabooroyaln1starfighter",
   "size": "Small",
-  "ffg": 63,
   "dial": [
     "1BW",
     "1FW",
@@ -22,7 +21,8 @@
     "4FW",
     "5FW"
   ],
-  "faction": "Galactic Republic",
+  "dialCodes": ["N1"],
+  "faction": "galacticrepublic",
   "stats": [
     { "arc": "Front Arc", "type": "attack", "value": 2 },
     { "type": "agility", "value": 2 },
@@ -41,8 +41,10 @@
       "initiative": 4,
       "limited": 1,
       "xws": "anakinskywalker-nabooroyaln1starfighter",
-      "hyperspace": true,
-      "cost": 41,
+      "standard": true,
+      "extended": true,
+      "cost": 5,
+      "loadout": 20,
       "slots": ["Talent", "Sensor", "Torpedo", "Astromech"],
       "ability": "Before you reveal your maneuver, you may spend 1 [Force] to barrel roll (this is not an action).",
       "force": { "value": 1, "recovers": 1, "side": ["light"] },
@@ -50,10 +52,11 @@
         "name": "Full Throttle",
         "text": "After you fully execute a speed 3-5 maneuver, you may perform an [Evade] action."
       },
-      "ffg": 558,
-      "artwork": "https://sb-cdn.fantasyflightgames.com/card_art/d9180cc98a1a4384bb2a0e11efbf1311.jpg",
-      "image": "https://sb-cdn.fantasyflightgames.com/card_images/en/21e28ea4e8784dce5a554a33888d8be0.png",
-      "caption": "Hero of Naboo"
+      "artwork": "https://infinitearenas.com/xw2/images/artwork/pilots/anakinskywalker-nabooroyaln1starfighter.png",
+      "image": "https://infinitearenas.com/xw2/images/pilots/anakinskywalker-nabooroyaln1starfighter.png",
+      "caption": "Hero of Naboo",
+      "keywords": ["Light Side"],
+      "epic": true
     },
     {
       "name": "Ric Olié",
@@ -65,13 +68,15 @@
         "text": "After you fully execute a speed 3-5 maneuver, you may perform an [Evade] action."
       },
       "caption": "Bravo Leader",
-      "hyperspace": true,
-      "cost": 42,
-      "slots": ["Talent", "Sensor", "Torpedo", "Astromech"],
+      "standard": true,
+      "extended": true,
+      "cost": 4,
+      "loadout": 12,
+      "slots": ["Talent", "Talent", "Sensor", "Torpedo", "Astromech"],
       "ability": "While you defend or perform a primary attack, if the speed of your revealed maneuver is higher than the enemy ship's, roll 1 additional die.",
-      "ffg": 557,
-      "artwork": "https://sb-cdn.fantasyflightgames.com/card_art/26080de6b705112c0d7d53de48484bb0.jpg",
-      "image": "https://sb-cdn.fantasyflightgames.com/card_images/en/87829b7b808c535eb1e2c8314b04971a.png"
+      "artwork": "https://infinitearenas.com/xw2/images/artwork/pilots/ricolie.png",
+      "image": "https://infinitearenas.com/xw2/images/pilots/ricolie.png",
+      "epic": true
     },
     {
       "name": "Padmé Amidala",
@@ -83,13 +88,15 @@
         "text": "After you fully execute a speed 3-5 maneuver, you may perform an [Evade] action."
       },
       "caption": "Aggressive Negotiator",
-      "hyperspace": true,
-      "cost": 45,
+      "standard": true,
+      "extended": true,
+      "cost": 4,
+      "loadout": 18,
       "slots": ["Talent", "Sensor", "Torpedo", "Astromech"],
       "ability": "While an enemy ship in your [Front Arc] defends or performs an attack, that ship can modify only 1 [Focus] result (other results can still be modified).",
-      "ffg": 559,
-      "artwork": "https://sb-cdn.fantasyflightgames.com/card_art/254a567fa647e783bcd3fb9c09377e3d.jpg",
-      "image": "https://sb-cdn.fantasyflightgames.com/card_images/en/3bc6bb14d0c80011145a36c132550298.png"
+      "artwork": "https://infinitearenas.com/xw2/images/artwork/pilots/padmeamidala.png",
+      "image": "https://infinitearenas.com/xw2/images/pilots/padmeamidala.png",
+      "epic": true
     },
     {
       "name": "Dineé Ellberger",
@@ -101,13 +108,15 @@
         "name": "Full Throttle",
         "text": "After you fully execute a speed 3-5 maneuver, you may perform an [Evade] action."
       },
-      "hyperspace": true,
-      "cost": 38,
+      "standard": true,
+      "extended": true,
+      "cost": 4,
+      "loadout": 14,
       "slots": ["Talent", "Sensor", "Torpedo", "Astromech"],
       "ability": "While you defend or perform an attack, if the speed of your revealed maneuver is the same as the enemy ship's, that ship's dice cannot be modified.",
-      "ffg": 560,
-      "artwork": "https://sb-cdn.fantasyflightgames.com/card_art/3f71de47ef3b5986a433757a00f4230b.jpg",
-      "image": "https://sb-cdn.fantasyflightgames.com/card_images/en/06e0863851b95dba4874b211e05661cc.png"
+      "artwork": "https://infinitearenas.com/xw2/images/artwork/pilots/dineeellberger.png",
+      "image": "https://infinitearenas.com/xw2/images/pilots/dineeellberger.png",
+      "epic": true
     },
     {
       "name": "Bravo Flight Officer",
@@ -119,12 +128,14 @@
         "text": "After you fully execute a speed 3-5 maneuver, you may perform an [Evade] action."
       },
       "text": "The volunteer pilots of the Royal Naboo Security Force are dedicated to protecting the people and ideals of their homeworld, and trust their Queen to send them into battle only when all other options have failed.",
-      "hyperspace": true,
-      "cost": 34,
+      "standard": true,
+      "extended": true,
+      "cost": 4,
+      "loadout": 8,
       "slots": ["Sensor", "Torpedo", "Astromech"],
-      "ffg": 562,
-      "artwork": "https://sb-cdn.fantasyflightgames.com/card_art/4e1a2195431b026de73c90f8ce5f7c20.jpg",
-      "image": "https://sb-cdn.fantasyflightgames.com/card_images/en/274db1f70ed4da939b9440837a30c39a.png"
+      "artwork": "https://infinitearenas.com/xw2/images/artwork/pilots/bravoflightofficer.png",
+      "image": "https://infinitearenas.com/xw2/images/pilots/bravoflightofficer.png",
+      "epic": true
     },
     {
       "name": "Naboo Handmaiden",
@@ -136,15 +147,37 @@
         "name": "Full Throttle",
         "text": "After you fully execute a speed 3-5 maneuver, you may perform an [Evade] action."
       },
-      "hyperspace": true,
+      "standard": true,
+      "extended": true,
       "conditions": ["decoyed"],
       "ability": "Setup: After placing forces, assign the Decoyed condition to 1 friendly ship other than Naboo Handmaiden.",
-      "cost": 44,
-      "slots": ["Sensor", "Torpedo", "Astromech"],
-      "ffg": 561,
-      "artwork": "https://sb-cdn.fantasyflightgames.com/card_art/afe1521a12124eeff41ed4234e7591ac.jpg",
-      "image": "https://sb-cdn.fantasyflightgames.com/card_images/en/4493fe57050175b6a75e3a13e7553b1e.png"
+      "cost": 4,
+      "loadout": 8,
+      "slots": ["Sensor", "Modification", "Astromech"],
+      "artwork": "https://infinitearenas.com/xw2/images/artwork/pilots/naboohandmaiden.png",
+      "image": "https://infinitearenas.com/xw2/images/pilots/naboohandmaiden.png",
+      "epic": true
+    },
+    {
+      "name": "Gavyn Sykes",
+      "xws": "gavynsykes",
+      "caption": "Bravo Three",
+      "initiative": 3,
+      "limited": 1,
+      "shipAbility": {
+        "name": "Full Throttle",
+        "text": "After you fully execute a speed 3-5 maneuver, you may perform an [Evade] action."
+      },
+      "standard": true,
+      "extended": true,
+      "cost": 4,
+      "loadout": 16,
+      "slots": ["Talent", "Sensor", "Torpedo", "Astromech", "Modification"],
+      "ability": "While you defend or perform an attack, if the speed of your revealed maneuver is greater than the enemy ship's, you may reroll your blank results.",
+      "artwork": "https://infinitearenas.com/xw2/images/artwork/pilots/gavynsykes.png",
+      "image": "https://infinitearenas.com/xw2/images/pilots/gavynsykes.png",
+      "epic": true
     }
   ],
-  "icon": "https://sb-cdn.fantasyflightgames.com/ship_types/I_Royal_Naboo_N-1_Starfighter.png"
+  "icon": "https://infinitearenas.com/xw2/images/shipicons/galactic-republic/I_Royal_Naboo_N-1_Starfighter.png"
 }
