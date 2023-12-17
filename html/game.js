@@ -32,6 +32,16 @@ var ship_qtd = {};
 // data.json (data about ships)
 var ship_data = {}
 
+var faction_titles = {
+    'galactic-empire': "Galactic Empire",
+    'rebel-alliance': 'Rebel Alliance',
+    'scum-and-villainy': 'Scum & Villany',
+    'first-order': 'First Order',
+    'galactic-republic': 'Galactic Republic',
+    'resistance': 'Resistance',
+    'separatist-alliance': 'Separatist Alliance'
+}
+
 window.onload = function() {	
     if ( !window.sessionStorage.getItem('xwingDials') ) {
     } else {
@@ -48,13 +58,13 @@ window.onload = function() {
 
     // load ship json
     $.ajax({
-        url:'data/data.json&'+Date.now(),
+        url:'data/data.json?'+Date.now(),
         dataType: "json",
         success: function(data){
             ship_data = data;
             // populate faction select box
             $.each(ship_data.ships,function(i,j){
-                $('#select-faction').append($('<option />').val(i).text(i));
+                $('#select-faction').append($('<option />').val(i).text(faction_titles[i]));
             });
         }
     });
@@ -206,7 +216,7 @@ playGame.prototype = {
             game.load.image("unlock", "unlock.png");
             game.load.image("lock", "lock.png");
             game.load.image("pin", "pin.png");     
-            game.load.image("dial_selector", "dial_selector.png")
+            game.load.image("dial_selector", "dial_selector.png?1")
             Phaser.Canvas.setTouchAction(game.canvas, "auto"); // disable the default "none" so enable scroll
             game.input.touch.preventDefault = false;
 
