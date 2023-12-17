@@ -83,8 +83,8 @@
             "laat-i-gunship": { "title": "LAAT-I gunship" },
             "naboo-royal-n-1-starfighter" : {"title":"Naboo Royal N-1 Starfighter"},
             "nymbus-class-v-wing" : {"title":"Nymbus-class V-Wing"},
-            "syliure-class-hyperspace-ring" : {"title":"Naboo Royal N-1 Starfighter"},
-            "v-19-torrent-starfighter": {"title": "Syliure-class Hyperspace Ring"}
+            "syliure-class-hyperspace-ring" : {"title":"Syliure-class Hyperspace Ring"},
+            "v-19-torrent-starfighter": {"title": "V19 Torrent Starfighter"}
         },
         "resistance": {
             "bta-nr2-y-wing": {"title": "BTA NR2 Y-Wing"},
