@@ -48,7 +48,7 @@ window.onload = function() {
 
     // load ship json
     $.ajax({
-        url:'data/data.json',
+        url:'data/data.json&'+Date.now(),
         dataType: "json",
         success: function(data){
             ship_data = data;
